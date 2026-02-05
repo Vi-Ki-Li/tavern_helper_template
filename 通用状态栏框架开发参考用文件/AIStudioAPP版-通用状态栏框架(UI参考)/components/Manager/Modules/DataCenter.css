@@ -1,0 +1,53 @@
+
+/* DataCenter.css - Layout styles moved to ManagerLayout.css */
+/* Keeping only component-specific styles here if any */
+
+/* Modals Overlay */
+.data-center__reset-confirm-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: var(--z-modal);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(2px);
+}
+
+.data-center__reset-confirm-modal {
+  padding: var(--spacing-xl);
+  width: 320px;
+  background: var(--bg-surface);
+  border: 1px solid var(--color-danger);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+}
+.data-center__reset-confirm-modal h3 {
+  color: var(--color-danger);
+  margin-bottom: var(--spacing-md);
+  font-weight: var(--font-weight-semibold);
+}
+.data-center__reset-confirm-modal p {
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-lg);
+}
+.data-center__reset-confirm-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-sm);
+}
+
+.data-center__unsaved-prompt {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--color-warning);
+  font-size: 0.9rem;
+  font-weight: var(--font-weight-medium);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}

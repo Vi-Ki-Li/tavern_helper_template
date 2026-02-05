@@ -1,0 +1,127 @@
+
+/* @doc: 状态栏分组容器 | category: statusbar | desc: 包裹标题和内容的整个分组区块 */
+.status-section {
+  background: rgba(255, 255, 255, 0.03); /* Subtle inner layer */
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: background 0.2s ease;
+}
+
+body.dark-mode .status-section:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* @doc: 分组标题栏 | category: statusbar | desc: 点击可折叠/展开的头部区域 */
+.status-section__header {
+  padding: var(--spacing-md) var(--spacing-lg);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+
+.status-section__toggle-icon {
+  margin-right: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  color: var(--text-tertiary);
+}
+
+/* @doc: 分组标题文字 | category: statusbar | desc: 分组名称的字体样式 */
+.status-section__title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-weight: var(--font-weight-semibold);
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  opacity: 0.9;
+}
+
+.status-section__title-icon {
+  color: var(--color-primary);
+  opacity: 0.8;
+}
+
+/* @doc: 分组内容区 | category: statusbar | desc: 展开后包含所有条目的区域 */
+.status-section__content {
+  /* Base styles applied, layout specific below */
+}
+
+/* --- Layout Modes --- */
+.status-section__content.layout--list {
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--spacing-lg) var(--spacing-lg) var(--spacing-lg);
+}
+
+.status-section__content.layout--grid {
+  display: grid;
+  /* --grid-columns is set via inline style in the component */
+  grid-template-columns: repeat(var(--grid-columns, 2), 1fr);
+  gap: var(--spacing-sm);
+  padding: 0 var(--spacing-md) var(--spacing-md) var(--spacing-md);
+}
+
+/* v8.6: Grid Item Card Styling */
+.status-section__content.layout--grid .status-item-row {
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  background: var(--chip-bg);
+  border: 1px solid var(--chip-border);
+  transition: var(--transition-fast);
+}
+
+.status-section__content.layout--grid .status-item-row:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+.status-section__content.layout--grid .status-item-row .status-item-row__label {
+  padding-right: 0;
+  margin-bottom: var(--spacing-xs);
+}
+
+.status-section__content.layout--grid .status-item-row .status-item-row__content {
+  width: 100%;
+}
+
+
+.status-section__content.layout--tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0 var(--spacing-md) var(--spacing-md) var(--spacing-md);
+}
+
+/* v8.7: Tag Item Styling */
+.status-section__content.layout--tags .status-item-row {
+  flex-grow: 0;
+  border-bottom: none;
+  padding: 4px 10px;
+  background: var(--chip-bg);
+  border: 1px solid var(--chip-border);
+  border-radius: var(--radius-md);
+  justify-content: flex-start;
+  gap: var(--spacing-sm);
+  width: auto;
+}
+.status-section__content.layout--tags .status-item-row__content {
+  flex-grow: 0;
+}
+.status-section__content.layout--tags .status-item-row--text-inline .text-renderer__value {
+  text-align: left;
+}
+.status-section__content.layout--tags .status-item-row__label {
+  padding-right: 0;
+}
+
+
+/* Responsive grid for mobile */
+@media (max-width: 600px) {
+  .status-section__content.layout--grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+  }
+}

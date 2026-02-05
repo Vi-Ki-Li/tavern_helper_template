@@ -1,0 +1,177 @@
+
+/* --- App Layout --- */
+.app {
+  display: flex;
+  flex-direction: column;
+}
+
+/* @doc: 应用顶栏 | category: theme | desc: 页面顶部的导航和工具栏 */
+.app__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-lg) var(--spacing-xl);
+  gap: var(--spacing-lg);
+  border-radius: var(--radius-xl);
+  
+  /* Standardized Glass Effect */
+  background: var(--bg-surface);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-base);
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+/* @doc: 应用主标题 | category: theme | desc: 顶栏左侧的标题文字 */
+.app__title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.025em;
+}
+
+.app__actions {
+  display: flex;
+  gap: var(--spacing-xs);
+  align-items: center;
+}
+
+.app__actions-divider {
+  width: 1px;
+  background: var(--border-base);
+  height: 20px;
+}
+
+.app__devtools-section {
+  margin-bottom: 40px;
+}
+
+/* --- Mobile Action Sheet --- */
+/* @doc: 移动端菜单面板 | category: theme | desc: 移动端底部弹出的操作菜单 */
+.mobile-action-sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  
+  /* Standardized Surface & Layering */
+  background: var(--bg-surface);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-top: 1px solid var(--border-base);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  box-shadow: 0 -10px 40px rgba(0,0,0,0.3);
+  z-index: var(--z-modal);
+  
+  padding: var(--spacing-xl) var(--spacing-lg) 40px var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  transform: translateY(100%);
+  opacity: 0;
+  transition: all 0.3s var(--ease-out-back);
+}
+
+.mobile-action-sheet.open {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.mobile-action-sheet__backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(2px);
+  z-index: calc(var(--z-modal) - 1);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.mobile-action-sheet__backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-action-sheet__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-sm);
+}
+
+.mobile-action-sheet__title {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-lg);
+  color: var(--text-primary);
+}
+
+.mobile-action-sheet__close-btn {
+  background: transparent;
+  border: none;
+  padding: var(--spacing-sm);
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.mobile-action-sheet__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+}
+
+.mobile-action-sheet__action-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl);
+  gap: var(--spacing-sm);
+  
+  /* Inherit standard glass/panel styles via class, but override here if needed */
+  border-radius: var(--radius-lg);
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: transform 0.1s;
+}
+
+.mobile-action-sheet__action-item:active {
+  transform: scale(0.98);
+}
+
+.mobile-action-sheet__action-item.primary {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  color: white;
+  border: none;
+}
+
+.mobile-action-sheet__action-item.full-width {
+  grid-column: 1 / -1;
+}
+
+.mobile-action-sheet__action-label {
+  font-size: 0.9rem;
+  font-weight: var(--font-weight-medium);
+}
+
+/* --- Responsive Adjustments for App --- */
+@media (max-width: 768px) {
+  .app__header {
+    padding: var(--spacing-md) var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    position: sticky;
+    top: 10px;
+    z-index: var(--z-sticky);
+  }
+  
+  .app__title {
+    font-size: var(--font-size-lg);
+  }
+
+  .app__content {
+    margin-top: 0;
+  }
+}

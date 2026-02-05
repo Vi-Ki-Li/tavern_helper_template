@@ -1,0 +1,332 @@
+
+/* Shared Drawer Styles */
+/* @doc: 侧滑抽屉遮罩 | category: manager | desc: 侧边抽屉弹出时的背景遮罩 */
+.drawer__overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5); /* Darker overlay */
+  z-index: 100;
+  backdrop-filter: blur(2px);
+  animation: fadeIn 0.3s;
+}
+
+/* @doc: 侧滑抽屉面板 | category: manager | desc: 从右侧滑出的配置面板（如定义编辑） */
+.drawer__panel {
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 100%;
+  max-width: 500px;
+  background: var(--bg-surface-active);
+  border-left: 1px solid var(--border-base);
+  z-index: 101;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -10px 0 30px rgba(0,0,0,0.2);
+}
+
+.drawer__header {
+  padding: var(--spacing-lg) var(--spacing-xl);
+  border-bottom: 1px solid var(--border-base);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  background: var(--bg-surface);
+}
+
+.drawer__title {
+  font-size: 1.2rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.drawer__close-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 4px;
+  color: var(--text-tertiary);
+  transition: all 0.2s;
+  border-radius: var(--radius-full);
+}
+.drawer__close-btn:hover {
+    background: var(--bg-surface-hover);
+    color: var(--text-primary);
+}
+
+.drawer__content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.drawer__footer {
+  padding: var(--spacing-lg) var(--spacing-xl);
+  border-top: 1px solid var(--border-base);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md);
+  background: var(--bg-surface);
+  flex-shrink: 0;
+}
+
+.drawer__footer-actions {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+/* --- Form Styles --- */
+.form-group { display: flex; flex-direction: column; gap: 8px; }
+.form-group-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-label { font-size: 0.85rem; font-weight: var(--font-weight-medium); color: var(--text-secondary); }
+.form-label.icon-label { display: flex; align-items: center; gap: 6px; color: var(--color-primary); }
+
+/* @doc: 表单输入框 | category: manager | desc: 抽屉或表单中的通用输入框 */
+.form-input { 
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: var(--radius-md); 
+    border: 1px solid var(--border-base); 
+    background: var(--input-bg); 
+    color: var(--text-primary); 
+    outline: none; 
+    transition: 0.2s;
+    font-size: 0.95rem;
+    min-width: 0;
+    height: 40px; /* Standard height */
+}
+.form-input:disabled { opacity: 0.7; cursor: not-allowed; }
+.form-input:focus { 
+    border-color: var(--color-primary); 
+    background: var(--bg-surface-active);
+    box-shadow: 0 0 0 2px var(--color-primary-subtle); 
+}
+textarea.form-input { min-height: 100px; height: auto; line-height: 1.5; resize: vertical; padding-top: 10px; }
+
+.format-preview {
+  margin-top: 4px;
+  font-family: var(--font-family-mono);
+  font-size: 0.85rem;
+  white-space: pre-wrap; 
+  word-wrap: break-word; 
+  color: var(--text-primary);
+  background: rgba(0,0,0,0.03);
+  padding: 12px;
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--border-base);
+}
+
+/* --- Style Select Group --- */
+.def-drawer__style-select-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.def-drawer__style-select-group .form-input {
+  flex: 1;
+}
+.def-drawer__style-link-btn {
+  height: 40px;
+  width: 40px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-base);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: var(--transition-fast);
+}
+.def-drawer__style-link-btn:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  background: var(--bg-surface-hover);
+}
+
+/* Icon Selector */
+.icon-selector__display {
+  padding: 0 12px; height: 40px; display: flex; align-items: center; justify-content: space-between;
+  cursor: pointer; border: 1px solid var(--border-base);
+  border-radius: var(--radius-md);
+  background: var(--input-bg);
+  transition: all 0.2s;
+}
+.icon-selector__display:hover {
+    border-color: var(--border-hover);
+    background: var(--bg-surface-hover);
+}
+.icon-selector__display-info { display: flex; align-items: center; gap: 12px; }
+.icon-selector__display-info span:first-child { color: var(--text-tertiary); }
+.icon-selector__arrow { color: var(--text-tertiary); transition: 0.2s; }
+.icon-selector__arrow.open { transform: rotate(90deg); }
+
+.icon-selector__picker-wrapper {
+  margin-top: 8px; padding: 12px; height: 200px;
+  border: 1px solid var(--border-base);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+}
+
+/* --- Structure Builder Styles --- */
+.structure-builder {
+    background: rgba(0,0,0,0.02);
+    padding: 16px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-base);
+}
+
+.structure-builder__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.structure-builder__templates {
+    display: flex;
+    gap: 6px;
+}
+
+.structure-builder__templates button {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    border: 1px solid var(--border-base);
+    border-radius: var(--radius-sm);
+    background: var(--bg-surface);
+    cursor: pointer;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    transition: all 0.2s;
+}
+.structure-builder__templates button:hover {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.structure-builder__list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.structure-builder__empty {
+    text-align: center;
+    padding: 16px;
+    font-size: 0.85rem;
+    color: var(--text-tertiary);
+    font-style: italic;
+    border: 1px dashed var(--border-base);
+    border-radius: var(--radius-md);
+}
+
+.structure-part-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    background: var(--bg-surface);
+    padding: 8px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-base);
+    box-shadow: var(--shadow-sm);
+}
+
+.structure-part-inputs {
+    flex: 1;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.part-input {
+    padding: 0 8px;
+    font-size: 0.85rem;
+    height: 32px;
+    width: 100%;
+}
+
+.structure-part-actions {
+    display: flex;
+    gap: 2px;
+    flex-shrink: 0;
+    margin-left: 4px;
+}
+
+.structure-part-actions button {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    flex-shrink: 0;
+    transition: all 0.2s;
+}
+.structure-part-actions button:hover:not(:disabled) {
+    background: var(--bg-surface-hover);
+    color: var(--text-primary);
+}
+.structure-part-actions button.delete:hover {
+    color: var(--color-danger);
+    background: var(--color-danger-bg);
+}
+.structure-part-actions button:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+.structure-builder__add-btn {
+    width: 100%;
+    padding: 10px;
+    border: 1px dashed var(--color-primary);
+    background: var(--color-primary-subtle);
+    color: var(--color-primary);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.2s;
+}
+.structure-builder__add-btn:hover {
+    background: rgba(99, 102, 241, 0.15);
+}
+
+@media (max-width: 600px) {
+    .drawer__panel {
+        max-width: 100%;
+        border-left: none;
+    }
+    .structure-part-row {
+        flex-wrap: wrap;
+    }
+    .structure-part-inputs {
+        min-width: 100%;
+    }
+    .structure-part-actions {
+        width: 100%;
+        justify-content: flex-end;
+        margin-top: 4px;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

@@ -1,0 +1,98 @@
+
+/* --- Mobile Navigation --- */
+/* @doc: 移动端导航容器 | category: manager | desc: 移动端底部的导航栏容器 */
+.module-nav--mobile {
+  display: flex;
+  justify-content: space-around;
+  background: var(--bg-surface); /* Use surface color */
+  border-top: 1px solid var(--border-base);
+  padding: var(--spacing-xs) var(--spacing-xs) calc(var(--spacing-xs) + env(safe-area-inset-bottom, 0px)); /* Safe area support */
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+/* @doc: 移动端导航按钮 | category: manager | desc: 移动端底部的单个导航项 */
+.module-nav__item--mobile {
+  background: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: var(--text-tertiary);
+  flex: 1;
+  padding: 8px 0;
+  border-radius: var(--radius-md);
+  transition: all 0.2s;
+}
+
+.module-nav__item--mobile:active {
+  background: var(--bg-surface-hover);
+}
+
+.module-nav__item--mobile.active {
+  color: var(--color-primary);
+}
+
+.module-nav__label--mobile {
+  font-size: 0.65rem;
+  font-weight: var(--font-weight-medium);
+}
+.module-nav__item--mobile.active .module-nav__label--mobile {
+  font-weight: var(--font-weight-semibold);
+}
+
+/* --- Desktop Sidebar --- */
+/* @doc: 桌面端导航侧栏 | category: manager | desc: 桌面端最左侧的图标导航栏 */
+.module-nav--desktop {
+  width: 80px;
+  background: rgba(0,0,0,0.02);
+  border-right: 1px solid var(--border-base);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-xl) 0;
+  gap: var(--spacing-xl);
+  flex-shrink: 0;
+  height: 100%;
+}
+
+/* @doc: 桌面端导航按钮 | category: manager | desc: 桌面端侧栏的图标按钮 */
+.module-nav__item--desktop {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-xl);
+  border: none;
+  background: transparent;
+  color: var(--text-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s var(--ease-smooth);
+  position: relative;
+}
+
+.module-nav__item--desktop:hover:not(.active) {
+    background: var(--bg-surface-hover);
+    color: var(--text-primary);
+}
+
+/* @doc: 桌面端导航按钮(激活) | category: manager | desc: 当前选中的桌面端导航按钮 */
+.module-nav__item--desktop.active {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  color: white;
+  box-shadow: 0 4px 12px var(--color-primary-subtle);
+  transform: translateY(-2px);
+}
+
+.module-nav__item--desktop.active::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 20px;
+  border: 2px solid var(--bg-app);
+  opacity: 0.5;
+  z-index: -1;
+}

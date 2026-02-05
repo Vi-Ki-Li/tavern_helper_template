@@ -1,0 +1,117 @@
+
+/* DefinitionList.css - Refactored to use ManagerLayout standard */
+
+/* Most styles moved to ManagerLayout.css */
+
+.mobile-hidden {
+    display: none !important;
+}
+
+/* --- Item Grid --- */
+/* @doc: 定义列表网格 | category: manager | desc: 规则卡片的布局容器 */
+.def-studio__item-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+  padding-bottom: 60px;
+}
+
+.def-studio__empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+  gap: var(--spacing-lg);
+  color: var(--text-tertiary);
+  min-height: 300px;
+}
+.def-studio__empty-state svg {
+  opacity: 0.5;
+}
+
+/* --- Def Card (Custom Content) --- */
+/* @doc: 规则卡片 | category: manager | desc: 单个条目定义卡片 */
+.def-card {
+  padding: var(--spacing-lg);
+  border: 1px solid var(--border-base);
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  transition: all 0.2s ease;
+}
+.def-card:hover {
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-md);
+}
+
+.def-card--item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+.def-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.def-card__name-group {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+/* @doc: 规则键名 | category: manager | desc: 卡片上的 Key 显示 */
+.def-card__name {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+  font-family: var(--font-family-mono);
+}
+.def-card__actions {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.def-card__category-tag {
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
+  background: var(--bar-bg);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--chip-border);
+}
+.def-card__meta-group {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+/* @doc: 规则元标签 | category: manager | desc: 显示类型（如数值、文本）的小标签 */
+.def-card__meta-chip {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  background: var(--bg-app);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-base);
+}
+.def-card__meta-chip.highlight {
+    background: var(--color-success-bg);
+    border-color: var(--color-success-bg);
+    color: var(--color-success);
+}
+
+.def-card__display-name {
+    font-size: 0.85rem;
+    color: var(--text-tertiary);
+    margin-top: -4px;
+}
+
+@media (max-width: 480px) {
+  .def-studio__item-grid {
+    grid-template-columns: 1fr;
+  }
+}

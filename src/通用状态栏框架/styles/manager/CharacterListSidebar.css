@@ -1,0 +1,42 @@
+
+/* CharacterListSidebar.css - Styles moved to ManagerLayout.css */
+
+/* Specific styles for the Add Character inline form */
+.char-sidebar__add-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: var(--spacing-md);
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-primary);
+  margin-bottom: var(--spacing-sm);
+  box-shadow: var(--shadow-md);
+}
+
+.char-sidebar__add-input {
+  border: 1px solid var(--border-base);
+  background: var(--input-bg);
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.char-sidebar__add-input:focus { border-color: var(--color-primary); }
+.char-sidebar__add-input.error { border-color: var(--color-danger); }
+.char-sidebar__add-error { font-size: 0.7rem; color: var(--color-danger); }
+
+.char-sidebar__add-actions { display: flex; justify-content: flex-end; gap: 8px; }
+.char-sidebar__add-confirm { 
+    color: var(--color-success); 
+    background: var(--color-success-bg); 
+    padding: 4px; border-radius: 4px; border:none; cursor: pointer;
+}
+.char-sidebar__add-cancel { 
+    color: var(--text-secondary); 
+    padding: 4px; border-radius: 4px; border:none; background: transparent; cursor: pointer;
+}
+.char-sidebar__add-cancel:hover { background: var(--bg-surface-hover); }

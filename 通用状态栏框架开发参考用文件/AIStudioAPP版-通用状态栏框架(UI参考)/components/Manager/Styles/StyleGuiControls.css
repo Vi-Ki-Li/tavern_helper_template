@@ -1,0 +1,186 @@
+
+/* v9.6: StyleGUI Overhaul */
+
+/* @doc: GUI控制台容器 | category: manager | desc: 可视化样式编辑器的整体容器 */
+.style-gui-controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  background: rgba(0,0,0,0.02);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--chip-border);
+}
+
+/* --- "Currently Editing" Display --- */
+/* @doc: 当前编辑目标展示 | category: manager | desc: 显示当前选中的CSS类名和描述的区域 */
+.gui-controls__target-display {
+  background: var(--bg-app);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--chip-border);
+}
+.gui-controls__target-label {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+  margin-bottom: var(--spacing-sm);
+  font-weight: var(--font-weight-medium);
+}
+.gui-controls__target-label svg {
+  color: var(--color-accent);
+}
+
+.gui-controls__target-name-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.gui-controls__target-description {
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+}
+.gui-controls__target-selector-name {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+.gui-controls__target-placeholder {
+  font-style: italic;
+  color: var(--text-tertiary);
+}
+
+/* --- Main Container --- */
+.gui-controls__scroll-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  transition: opacity 0.3s ease;
+}
+.gui-controls__scroll-container.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* --- Section --- */
+/* @doc: GUI折叠面板 | category: manager | desc: 包含一组属性控件的折叠容器 */
+.gui-controls__section {
+  background: var(--bg-app);
+  border: 1px solid var(--chip-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+/* @doc: GUI折叠面板头部 | category: manager | desc: 点击展开/收起的标题栏 */
+.gui-controls__section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  cursor: pointer;
+  background: transparent;
+  width: 100%;
+  border: none;
+  text-align: left;
+}
+.gui-controls__section-header:hover .gui-controls__section-title {
+    color: var(--text-primary);
+}
+
+.gui-controls__section-title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-weight: var(--font-weight-medium);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
+}
+.gui-controls__section-title svg {
+  color: var(--color-accent);
+}
+
+.gui-controls__section-arrow {
+  color: var(--text-tertiary);
+  transition: transform 0.2s ease;
+}
+.gui-controls__section.open .gui-controls__section-arrow {
+  transform: rotate(180deg);
+}
+
+.gui-controls__section-content {
+  padding: var(--spacing-md);
+  border-top: 1px solid var(--chip-border);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); /* Responsive Grid */
+  gap: var(--spacing-md);
+  animation: fadeIn 0.3s;
+}
+
+/* --- Controls --- */
+/* @doc: GUI单个控件 | category: manager | desc: 包含标签和输入框的单个属性控制项 */
+.gui-controls__control {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.gui-controls__control label {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+}
+
+/* Color Control */
+/* @doc: 颜色输入框容器 | category: manager | desc: 包含颜色选择器和文本输入框的组合 */
+.gui-controls__color-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  border: 1px solid var(--chip-border);
+  border-radius: var(--radius-sm);
+  padding: 4px;
+  background: var(--bg-app);
+  height: 34px;
+}
+.gui-controls__color-input-wrapper:focus-within {
+  border-color: var(--color-primary);
+}
+
+.gui-controls__color-input-wrapper input[type="color"] {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.gui-controls__color-text-input {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: monospace; /* Correct font for hex codes */
+  font-size: 0.85rem;
+  color: var(--text-primary);
+}
+
+/* Text Control */
+.gui-controls__text-input {
+  width: 100%;
+  height: 34px;
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--chip-border);
+  background: var(--bg-app);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  outline: none;
+  font-family: inherit; /* Inherit global font */
+}
+.gui-controls__text-input:focus {
+  border-color: var(--color-primary);
+}

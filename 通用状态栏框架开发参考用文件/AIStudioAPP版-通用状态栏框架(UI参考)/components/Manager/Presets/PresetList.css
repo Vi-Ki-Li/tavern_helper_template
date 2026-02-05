@@ -1,0 +1,214 @@
+
+/* components/Manager/Presets/PresetList.css */
+
+.preset-list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.preset-list__content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-lg);
+}
+
+/* @doc: 预设列表网格 | category: manager | desc: 预设卡片的网格布局容器 */
+.preset-list__grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.preset-list__empty {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-tertiary);
+  gap: var(--spacing-lg);
+}
+.preset-list__empty svg { opacity: 0.5; }
+
+.preset-list__stats {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-left: var(--spacing-md);
+}
+
+/* Card Style Overrides for .th-interactive-card */
+/* @doc: 预设卡片 | category: manager | desc: 单个配置预设的卡片容器 */
+.preset-card-item {
+  /* Inherits base styles from th-interactive-card */
+  padding: var(--spacing-md) var(--spacing-lg);
+}
+
+/* @doc: 预设卡片(激活) | category: manager | desc: 当前生效的预设卡片样式 */
+.preset-card-item.active {
+  border-color: var(--color-primary);
+  background: rgba(99, 102, 241, 0.03);
+}
+
+.preset-card__main {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.preset-card__icon {
+  color: var(--text-tertiary);
+  display: flex;
+  align-items: center;
+}
+.preset-card-item.active .active-indicator {
+    color: var(--color-primary);
+}
+
+.preset-card__info {
+  flex: 1;
+  min-width: 0;
+}
+
+/* @doc: 预设标题 | category: manager | desc: 预设卡片中的标题文字 */
+.preset-card__title {
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  font-size: 1rem;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* @doc: 预设状态徽章 | category: manager | desc: 显示“使用中”状态的胶囊徽章 */
+.preset-card__badge {
+    font-size: 0.65rem;
+    background: var(--color-primary);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 99px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.preset-card__meta {
+  display: flex;
+  gap: var(--spacing-lg);
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+}
+.preset-card__meta span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.preset-card__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+}
+
+.preset-card__menu {
+    display: flex;
+    gap: 2px;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.2s;
+}
+.preset-card-item:hover .preset-card__menu {
+    opacity: 1;
+}
+
+.btn--sm {
+    padding: 4px 12px;
+    height: 28px;
+    font-size: 0.8rem;
+}
+
+/* Details Section */
+.preset-details {
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-md);
+    border-top: 1px dashed var(--border-base);
+}
+
+.preset-details__info-grid {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+}
+
+.preset-details__tag {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: var(--bar-bg);
+    color: var(--text-secondary);
+}
+.preset-details__tag.layout { color: var(--color-info); background: rgba(59, 130, 246, 0.1); }
+.preset-details__tag.narrative { color: var(--color-accent); background: rgba(139, 92, 246, 0.1); }
+
+.preset-details__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.preset-details__chip {
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    background: var(--bg-app);
+    border: 1px solid var(--border-base);
+    border-radius: 4px;
+    color: var(--text-secondary);
+}
+.preset-details__chip .highlight {
+    color: var(--color-warning);
+    margin-left: 2px;
+    font-weight: bold;
+}
+
+.preset-details__empty {
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+    font-style: italic;
+}
+
+/* Delete Modal */
+.preset-list__confirm-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+.preset-list__confirm-modal {
+    padding: var(--spacing-xl);
+    width: 300px;
+    background: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    text-align: center;
+}
+.confirm-header {
+    color: var(--color-danger);
+    font-weight: bold;
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.confirm-actions {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}

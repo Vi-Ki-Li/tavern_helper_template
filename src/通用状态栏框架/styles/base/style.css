@@ -1,0 +1,587 @@
+
+/* style.css - Phase 1: Design System Core */
+
+:root {
+  /* --- 1. Design Tokens: Colors (Base Palette) --- */
+  /* Brand Colors */
+  /* @doc: 主品牌色 | category: theme | desc: 应用的主要色调 (Indigo 500) */
+  --color-primary: #6366f1;       
+  /* @doc: 主色悬停 | category: theme | desc: 按钮悬停状态颜色 */
+  --color-primary-hover: #4f46e5; 
+  /* @doc: 主色淡背景 | category: theme | desc: 选中项或高亮的背景色 */
+  --color-primary-subtle: rgba(99, 102, 241, 0.1);
+  
+  /* @doc: 次要色 | category: theme | desc: 辅助品牌色 (Pink 500) */
+  --color-secondary: #ec4899;     
+  /* @doc: 强调色 | category: theme | desc: 用于特殊高亮 (Violet 500) */
+  --color-accent: #8b5cf6;        
+  
+  /* Semantic Status Colors */
+  /* @doc: 成功色 | category: theme | desc: 绿色 (Emerald 500) */
+  --color-success: #10b981;       
+  --color-success-bg: rgba(16, 185, 129, 0.1);
+  
+  /* @doc: 警告色 | category: theme | desc: 黄色 (Amber 500) */
+  --color-warning: #f59e0b;       
+  --color-warning-bg: rgba(245, 158, 11, 0.1);
+  
+  /* @doc: 危险色 | category: theme | desc: 红色 (Red 500) */
+  --color-danger: #ef4444;        
+  --color-danger-bg: rgba(239, 68, 68, 0.1);
+  
+  /* @doc: 信息色 | category: theme | desc: 蓝色 (Blue 500) */
+  --color-info: #3b82f6;          
+
+  /* --- 2. Design Tokens: Typography --- */
+  /* @doc: 全局字体 | category: theme | desc: 应用主要字体栈 */
+  --font-family-base: 'Outfit', system-ui, -apple-system, sans-serif;
+  /* @doc: 等宽字体 | category: theme | desc: 代码和数值使用的字体 */
+  --font-family-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  
+  --font-size-xs: 0.75rem;   /* 12px */
+  --font-size-sm: 0.875rem;  /* 14px */
+  --font-size-base: 1rem;    /* 16px */
+  --font-size-lg: 1.125rem;  /* 18px */
+  --font-size-xl: 1.25rem;   /* 20px */
+  --font-size-2xl: 1.5rem;   /* 24px */
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* --- 3. Design Tokens: Spacing & Sizing --- */
+  --spacing-2xs: 2px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 24px;
+  --spacing-2xl: 32px;
+
+  --header-height: 64px;
+  --sidebar-width: 240px; /* Standardized Width */
+
+  /* --- 4. Design Tokens: Radius --- */
+  /* @doc: 圆角(小) | category: theme | desc: 按钮和小元素的圆角 */
+  --radius-sm: 4px;
+  /* @doc: 圆角(中) | category: theme | desc: 输入框和卡片的圆角 */
+  --radius-md: 8px;
+  /* @doc: 圆角(大) | category: theme | desc: 模态框和大容器的圆角 */
+  --radius-lg: 12px;
+  /* @doc: 圆角(超大) | category: theme | desc: 顶级容器圆角 */
+  --radius-xl: 16px;
+  /* @doc: 全圆角 | category: theme | desc: 胶囊按钮和圆形 */
+  --radius-full: 9999px;
+
+  /* --- 5. Design Tokens: Z-Index (Layering System) --- */
+  --z-base: 1;
+  --z-dropdown: 100;
+  --z-sticky: 500;
+  --z-overlay: 900;
+  --z-modal: 1000;
+  --z-popover: 1100;
+  --z-toast: 10000;
+  --z-max: 2147483647;
+
+  /* --- 6. Design Tokens: Animation --- */
+  --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.2s ease;
+  --transition-normal: all 0.3s var(--ease-smooth);
+
+  /* --- 7. Theme Variables (Light Mode Default) --- */
+  /* @doc: 应用背景色 | category: theme | desc: 网页的基础背景色 */
+  --bg-app: #f3f4f6; /* Gray 100 */
+  /* @doc: 背景渐变 | category: theme | desc: 叠加在背景色上的渐变效果 */
+  --bg-gradient: radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%), 
+                 radial-gradient(at 100% 0%, rgba(236, 72, 153, 0.15) 0px, transparent 50%), 
+                 radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.15) 0px, transparent 50%), 
+                 radial-gradient(at 0% 100%, rgba(16, 185, 129, 0.15) 0px, transparent 50%);
+
+  /* Surface / Glass - Increased Opacity for Solid Feel */
+  /* @doc: 面板表面色 | category: theme | desc: 卡片/弹窗的半透明背景 */
+  --bg-surface: rgba(255, 255, 255, 0.95); 
+  --bg-surface-hover: rgba(255, 255, 255, 0.98);
+  --bg-surface-active: #ffffff;
+  
+  /* Borders - Darkened for visibility in Light Mode */
+  /* @doc: 基础边框色 | category: theme | desc: 分隔线和容器边框 */
+  --border-base: rgba(0, 0, 0, 0.08);
+  --border-hover: rgba(99, 102, 241, 0.5);
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  /* @doc: 玻璃阴影 | category: theme | desc: 浮动面板的阴影效果 */
+  --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+  
+  /* @doc: 毛玻璃模糊 | category: theme | desc: 这里的模糊度影响玻璃拟态效果 */
+  --glass-blur: blur(16px);
+
+  /* Text */
+  /* @doc: 主要文本色 | category: theme | desc: 正文和标题颜色 */
+  --text-primary: #1f2937;   /* Gray 800 */
+  /* @doc: 次要文本色 | category: theme | desc: 标签和说明文字颜色 */
+  --text-secondary: #6b7280; /* Gray 500 */
+  /* @doc: 三级文本色 | category: theme | desc: 占位符和禁用态文字 */
+  --text-tertiary: #9ca3af;  /* Gray 400 */
+  --text-on-primary: #ffffff;
+
+  /* Components specific */
+  /* @doc: 输入框背景 | category: theme | desc: 文本输入框的背景 */
+  --input-bg: rgba(255, 255, 255, 0.7);
+  --bar-bg: rgba(0, 0, 0, 0.06);
+  --chip-bg: rgba(255, 255, 255, 0.9);
+  --chip-border: rgba(0, 0, 0, 0.08);
+  
+  /* Scrollbar Colors (Standard) */
+  --scrollbar-thumb: rgba(156, 163, 175, 0.5);
+  --scrollbar-track: transparent;
+}
+
+/* --- Dark Mode Overrides (Zinc / Neutral Tone) --- */
+/* @doc: 深色模式根节点 | category: theme | desc: 深色模式下的变量覆盖 */
+body.dark-mode {
+  --bg-app: #09090b; /* Zinc 950 - Pure, deep dark */
+  
+  /* Very subtle, dark gradient for Zinc mode */
+  --bg-gradient: radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.08) 0px, transparent 50%), 
+                 radial-gradient(at 90% 10%, rgba(236, 72, 153, 0.05) 0px, transparent 50%), 
+                 radial-gradient(at 50% 50%, rgba(24, 24, 27, 0) 0px, transparent 50%);
+
+  /* Surfaces: Zinc 900/800 base */
+  --bg-surface: rgba(24, 24, 27, 0.9);       /* Zinc 900 + Alpha (High Opacity) */
+  --bg-surface-hover: rgba(39, 39, 42, 0.95); /* Zinc 800 + Alpha */
+  --bg-surface-active: rgba(63, 63, 70, 1);   /* Zinc 700 (Solid) */
+
+  --border-base: rgba(255, 255, 255, 0.12);
+  --border-hover: rgba(255, 255, 255, 0.3);
+  
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+
+  /* Text: Clean whites and grays */
+  --text-primary: #fafafa;   /* Zinc 50 */
+  --text-secondary: #a1a1aa; /* Zinc 400 */
+  --text-tertiary: #52525b;  /* Zinc 600 */
+
+  /* Components */
+  --input-bg: rgba(0, 0, 0, 0.3);
+  --bar-bg: rgba(255, 255, 255, 0.08);
+  --chip-bg: rgba(255, 255, 255, 0.05);
+  --chip-border: rgba(255, 255, 255, 0.1);
+  
+  /* Scrollbar Colors (Dark) */
+  --scrollbar-thumb: rgba(255, 255, 255, 0.2);
+}
+
+/* --- Global Reset & Base --- */
+* { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+  
+  /* Global Thin Scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+body {
+  font-family: var(--font-family-base);
+  background-color: var(--bg-app);
+  background-image: var(--bg-gradient);
+  background-attachment: fixed;
+  background-size: cover;
+  color: var(--text-primary);
+  min-height: 100vh;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  overflow-y: overlay;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- Layout Utilities --- */
+.container { 
+  width: 100%;
+  max-width: 800px; /* Revised to 800px per user request */
+  margin: 0 auto; 
+  padding: var(--spacing-xl); 
+}
+
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-between { display: flex; align-items: center; justify-content: space-between; }
+.flex-col { display: flex; flex-direction: column; }
+.flex-row { display: flex; flex-direction: row; }
+.gap-sm { gap: var(--spacing-sm); }
+.gap-md { gap: var(--spacing-md); }
+
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+
+.text-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* --- Component: Scrollbars (Webkit Fallback) --- */
+/* @doc: 滚动条(整体) | category: theme | desc: 整个应用或滚动区域的滚动条样式 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+/* @doc: 滚动条滑块 | category: theme | desc: 可拖动的滚动条滑块 */
+::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--text-tertiary);
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* --- Component: Glass Panel --- */
+/* The core building block of the UI */
+/* @doc: 通用面板 | category: theme | desc: 应用中最常用的玻璃拟态面板容器 */
+.glass-panel {
+  background: var(--bg-surface);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-base);
+  box-shadow: var(--shadow-glass);
+  border-radius: var(--radius-xl);
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+/* --- Component: Buttons --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-medium);
+  font-size: 0.9rem;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  white-space: nowrap;
+  user-select: none;
+  background: transparent;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Primary Button: Gradient Brand Color */
+/* @doc: 主按钮 | category: theme | desc: 强调操作按钮 */
+.btn--primary {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  color: var(--text-on-primary);
+  border: none;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+.btn--primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+  filter: brightness(1.05);
+}
+.btn--primary.pulse { 
+  animation: pulse 2s infinite;
+}
+
+/* Ghost Button: Subtle, for secondary actions */
+/* @doc: 幽灵按钮 | category: theme | desc: 次要操作按钮 */
+.btn--ghost {
+  background: transparent;
+  color: var(--text-secondary);
+}
+.btn--ghost:hover:not(:disabled) {
+  background: var(--bg-surface-hover);
+  color: var(--text-primary);
+}
+
+/* Danger Button: Red */
+.btn--danger {
+  color: var(--color-danger);
+  background: var(--color-danger-bg);
+  border: 1px solid transparent;
+}
+.btn--danger:hover:not(:disabled) {
+  background: var(--color-danger);
+  color: white;
+}
+
+/* Icon Only Button Helper */
+.btn--icon {
+  padding: 8px;
+  border-radius: var(--radius-md);
+  aspect-ratio: 1;
+}
+
+/* --- Component: Inputs (Form Controls) --- */
+/* @doc: 通用输入框 | category: theme | desc: 所有文本输入框、下拉框的默认样式 */
+.form-input, 
+.form-select, 
+.form-textarea {
+  width: 100%;
+  padding: 8px 12px;
+  background: var(--input-bg);
+  border: 1px solid var(--border-base);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-family: var(--font-family-base);
+  font-size: 0.9rem;
+  outline: none;
+  transition: var(--transition-fast);
+}
+
+.form-input:focus, 
+.form-select:focus, 
+.form-textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-primary-subtle);
+  background: var(--bg-surface-active);
+}
+
+.form-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Range Slider */
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+}
+
+/* --- Animation Utilities --- */
+.animate-fade-in { animation: fadeIn 0.3s ease forwards; }
+.animate-slide-up { animation: slideUp 0.3s var(--ease-out-back) forwards; }
+.animate-slide-in { animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* --- Skeleton Loader --- */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bar-bg) 25%,
+    rgba(255, 255, 255, 0.2) 50%,
+    var(--bar-bg) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: var(--radius-sm);
+}
+body.dark-mode .skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 75%
+  );
+  background-size: 200% 100%;
+}
+
+/* --- Phase 3: Standard Components (Added) --- */
+
+/* 1. Standard Card */
+.th-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-base);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  transition: all 0.2s ease;
+}
+
+/* 2. Interactive Card (for lists, presets, etc.) */
+.th-interactive-card {
+  position: relative; /* For badges/actions */
+  background: var(--bg-surface);
+  border: 1px solid var(--border-base);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.th-interactive-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+.th-interactive-card.active {
+  border-color: var(--color-primary);
+  background: var(--color-primary-subtle);
+}
+
+/* 3. Toolbar (Top/Bottom bars) */
+.th-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-xl);
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-base);
+  flex-shrink: 0;
+}
+
+/* 4. Search Box */
+.th-search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-app);
+  border: 1px solid var(--border-base);
+  border-radius: var(--radius-md);
+  padding: 6px 12px;
+  color: var(--text-secondary);
+  width: 240px; /* Default width */
+  transition: border-color 0.2s;
+}
+.th-search-box:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-primary-subtle);
+}
+.th-search-box input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+/* 5. Grid Checkbox (for BackupManager, PresetEditor) */
+.th-grid-checkbox {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-base);
+  background: var(--bg-app);
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+}
+.th-grid-checkbox:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-surface-hover);
+}
+.th-grid-checkbox input {
+  accent-color: var(--color-primary);
+  width: 16px; height: 16px;
+}
+.th-grid-checkbox span {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: var(--font-weight-medium);
+}
+.th-grid-checkbox.warning {
+   border-color: var(--color-warning);
+   color: var(--color-warning);
+   background: var(--color-warning-bg);
+}
+.th-grid-checkbox.warning span {
+   color: var(--color-warning);
+}
+
+/* Utility: Card Header Group */
+.th-card-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+}
+.th-card-header__icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    background: var(--bg-app);
+    border: 1px solid var(--border-base);
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.th-card-header__content h3 {
+    font-size: 1rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+.th-card-header__content p {
+    font-size: 0.85rem;
+    color: var(--text-tertiary);
+}
+/* Danger variant */
+.th-card.danger-zone {
+    border-color: rgba(239, 68, 68, 0.3);
+    background: rgba(239, 68, 68, 0.03);
+}
+.th-card.danger-zone .th-card-header__icon {
+    color: var(--color-danger);
+    background: var(--color-danger-bg);
+    border-color: var(--color-danger);
+}
+
+/* --- Responsive Helpers --- */
+.desktop-only { display: flex; }
+.mobile-only { display: none; }
+
+@media (max-width: 768px) {
+  .container {
+    padding: var(--spacing-md);    
+  }
+  .desktop-only { display: none !important; }
+  .mobile-only { display: flex !important; }
+}
+
+/* --- Legacy / Safety Net Styles (Do Not Remove) --- */
+.numeric-renderer__progress-container { min-height: 4px; width: 100%; overflow: hidden; }
+.numeric-renderer__progress-fill { height: 100%; min-height: 4px; transition: width 0.6s var(--ease-out-back); }
+.array-renderer__tags-container { min-height: 20px; display: flex; flex-wrap: wrap; gap: 4px; }
+.array-renderer__tag-chip { min-height: 20px; display: inline-flex; align-items: center; }
+.object-card { min-height: 30px; display: flex; flex-direction: column; }
+.text-renderer__value { min-height: 1em; }

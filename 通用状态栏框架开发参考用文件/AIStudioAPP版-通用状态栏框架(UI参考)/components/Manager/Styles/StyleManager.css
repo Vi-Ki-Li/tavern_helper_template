@@ -1,0 +1,140 @@
+
+/* StyleManager.css - Refactored for ManagerLayout standard */
+
+/* --- Checkbox Styles --- */
+.style-atelier__checkbox {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--chip-border);
+  border-radius: 4px;
+  margin-right: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: border-color 0.2s;
+  background: var(--bg-app);
+}
+
+.style-atelier__checkbox.checked {
+  border-color: var(--color-primary);
+}
+
+.style-atelier__checkbox-inner {
+  width: 10px;
+  height: 10px;
+  background: var(--color-primary);
+  border-radius: 2px;
+}
+
+/* --- Specific overrides --- */
+.style-atelier__group-title {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-tertiary);
+  margin: var(--spacing-md) 0 var(--spacing-sm);
+  padding-left: var(--spacing-sm);
+  text-transform: uppercase;
+}
+
+/* --- Preview Canvas --- */
+.style-atelier__preview-canvas {
+  /* Using Manager Layout structure, adding specific padding/bg if needed */
+  background: rgba(0,0,0,0.02);
+  border: 1px solid var(--chip-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* --- Drag Overlay --- */
+.style-atelier__drag-overlay {
+  background: var(--color-primary);
+  color: white;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-weight: var(--font-weight-medium);
+  font-size: 0.9rem;
+  pointer-events: none;
+}
+
+/* --- Deletion Modal (Reused) --- */
+.style-atelier__delete-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(2px);
+}
+.style-atelier__delete-modal {
+  width: 90%;
+  max-width: 400px;
+  padding: var(--spacing-xl);
+  text-align: center;
+}
+.style-atelier__delete-modal h3 {
+    color: var(--color-danger);
+    margin-bottom: var(--spacing-md);
+}
+.style-atelier__delete-modal p {
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xl);
+}
+.style-atelier__delete-actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-md);
+}
+
+/* --- Footer Extras --- */
+.style-atelier__footer-row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    width: 100%;
+}
+.style-atelier__bulk-actions {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: var(--spacing-sm);
+}
+.style-atelier__io-actions {
+    margin-left: auto;
+    display: flex;
+    gap: 4px;
+}
+
+/* Mobile helper */
+.mobile-hidden {
+    display: none !important;
+}
+
+/* --- Mobile Tabs: Capsule Style Override --- */
+.th-manager__mobile-tabs--capsule {
+    overflow-x: visible; /* Disable horizontal scroll */
+    justify-content: center; /* Center align items */
+    align-items: center;
+    gap: var(--spacing-md); /* Add spacing between buttons */
+    padding: var(--spacing-md) var(--spacing-lg); /* Increase vertical padding */
+    display: flex; /* Ensure flex layout */
+}
+
+.th-manager__mobile-tabs--capsule .th-manager__mobile-tab {
+    flex: 1; /* Force equal width */
+    flex-shrink: 1; /* Allow shrinking if needed */
+    display: flex; /* ADDED: Flexbox for content */
+    align-items: center; /* ADDED: Vertical center */
+    justify-content: center; /* Center icon and text */
+    text-align: center;
+    border-radius: var(--radius-full); /* Ensure pill shape */
+    gap: 6px; /* ADDED: Space between icon and text */
+}
